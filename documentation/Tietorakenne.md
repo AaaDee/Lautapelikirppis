@@ -6,7 +6,7 @@ Tässä dokumentissa kuvataan Lautapelikirppis-sivuston tietokantarakennetta ja 
 
 Sovelluksen hyödyntämä tietokanta on kuvattu allaolevassa kaaviossa:
 
-![Tietokantakaavio](documentation/Tietokantakaavio.png?raw=true "Tietokantakaavio")
+![Tietokantakaavio](Tietokantakaavio.png?raw=true "Tietokantakaavio")
 
 Tietokanta muodostuu kolmesta tietosisältöä kuvaavasta taulusta (Myyntikohde, Käyttäjä ja Peli) sekä yhdestä liitostaulusta (Pelimyynti). Taulut on johdonmukaisuuden nimissä nimetty englanniksi sovelluksen koodissa, kaaviossa on puolestaan käytetty suomea muun dokumentaation tavoin.
 
