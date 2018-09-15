@@ -1,9 +1,16 @@
 # Lautapelikirppis
 An online marketplace for buying and selling board games. Coursework project (in Finnish).
 
-Kuvaus:
+## Linkkejä
+[Sovellus Herokussa](https://lautapelikirppis.herokuapp.com/)
+[Tietorakenteen kuvaus](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation//Tietorakenne.md)
+[Asennus- ja käyttöohjeet](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/Ohje.md)
+[User Storyt](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/UserStoryt.md)
+[Suhteutus arvosanavaatimuksiin](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation//Arvosanat.md)
 
-Tällä hetkellä käytettyjä lautapelejä ostetaan ja myydään lähinnä tätä tarkoitusta varten tehdyllä Facebook-sivulla. Sivun kankeus ja toiminnallisuuden puute häiritsee monia, joten eräs peliharrastaja päättää alkaa kehittelemään erillistä Lautapelikirppis-sivustoa kaupankäyntiä varten. Sivuston keskeisiä vaatimuksia ovat myyntikohteiden helppo listaaminen ja selaaminen, tietyn pelin hakeminen myyntiluettelosta, ja toteutuneiden kauppojen pohjalta muodostetun tilastotiedon hakeminen.
+Aihekuvaus:
+
+Tällä hetkellä käytettyjä lautapelejä ostetaan ja myydään lähinnä tätä tarkoitusta varten tehdyllä Facebook-sivulla. Sivun kankeus ja toiminnallisuuden puute häiritsevät monia, minkä takia tässä kehitteillä oleva Lautapelikirppis-sivusto pyrkii tarjoamaan kaupankäyntiin kätevämmän alustan. Sivuston keskeisiä vaatimuksia ovat myyntikohteiden helppo listaaminen ja selaaminen, tietyn pelin hakeminen myyntiluettelosta, ja toteutuneiden kauppojen pohjalta muodostetun tilastotiedon hakeminen.
 
 Sovelluksen päänäkymän muodostaa listaus myynnissä olevista kohteista. Kohteet voivat olla joko yksittäisiä pelejä, tai isompia pelipaketteja. Tyypillinen paketti koostuu pelistä ja sen lisäosista, koska myyjä ei tyypillisesti halua myydä peliä ilman lisäosia tai toisinpäin. Yksittäisen myyntikohteen tietoja ovat myynnissä oleva(t) peli(t), hinta, kohteen sijainti, myyjän yhteystiedot ja lyhyt vapaamuotoinen kuvaus. Lisäksi pelistä voi olla tiedossa sen tunnus ulkopuolisella BoardGameGeek.com (BGG)–sivustolla, jonka avulla käyttäjät voivat tutustua peleihin tarkemmin, ja jota hyödynnetään pelien tunnistamiseksi tilastoinnissa. Sivustolla ei ole erillistä pikaviestimahdollisuutta, vaan kaupanteon yksityiskohdat sovitaan yhteystietojen avulla sivuston ulkopuolella..
 

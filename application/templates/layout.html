@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lautapelikirppis</title>
+  </head>
+  
+  <body>
+    <h1>Lautapelikirppis</h1>
+    <ul>
+<li><a href="{{ url_for('games_index') }}">Selaa pelejä</a></li>
+<li><a href="{{ url_for('games_form') }}">Lisää peli</a></li>
+    </ul>
+    
+    {% block body %}
+    <p>
+Content.
+    </p>
+    {% endblock %}
+  </body>
+</html>
