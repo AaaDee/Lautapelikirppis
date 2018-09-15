@@ -32,7 +32,7 @@ INSERT INTO Game (name, bgg) VALUES (x, y)
 
 Tehty
 
-Hyväksymiskriteerit
+Hyväksymiskriteerit:
 - Game-tietokannan rivien muokkaaminen ja poistaminen mahdollista
 - Muokkaus ja poisto käyttäjän löydettävissä
 - Sivusto päivittyy kuvaamaan tietokannan uutta tilaa
@@ -45,7 +45,16 @@ UPDATE Game SET name=x, bgg=y WHERE Game.id = z
 
 Tekemättä
 
-Hyväksymiskriteerit
+Hyväksymiskriteerit:
 - Käyttäjä-tietokanta luotu
 - Kirjautumistoiminnallisuus toteutettu sivustolla
+
+## Haluan lisätä pelin myyntiin
+
+Tekemättä
+
+Hyväksymiskriteerit:
+- Käyttäjä- ja Myyntikohde -tietokannat luotu
+- Pelien lisääminen myyntikohteeseen mahdollista
+- Muiden myyntikohteen ominaisuuksien (kuten kuvaus ja hinta) asettaminen mahdollista
 
