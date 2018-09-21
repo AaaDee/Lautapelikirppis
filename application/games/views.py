@@ -1,6 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.games.models import Game
+from application.games.forms import GameForm
 
 @app.route("/games", methods=["GET"])
 def games_index():
@@ -8,16 +9,22 @@ def games_index():
 
 @app.route("/games/new/")
 def games_form():
-    return render_template("games/new.html")
+    return render_template("games/new.html", form = GameForm())
 
 @app.route("/games/edit/<game_id>", methods=["GET"])
 def games_edit(game_id):
     g = Game.query.get(game_id)
-    return render_template("games/edit.html", game = g)
+    return render_template("games/edit.html", game = g, form = GameForm())
 
 @app.route("/games/", methods=["POST"])
 def games_create():
-    g = Game(request.form.get("name"), request.form.get("bgg"))
+    form = GameForm(request.form)
+
+    if not form.validate():
+        return render_template("games/new.html", form = form)
+
+    g = Game(form.name.data)
+    g.bgg = form.bgg.data
 
     db.session().add(g)
     db.session().commit()
@@ -27,10 +34,14 @@ def games_create():
 
 @app.route("/games/edit/<game_id>", methods=["POST"])
 def games_edit_submit(game_id):
+    form = GameForm(request.form)
     g = Game.query.get(game_id)
-    
-    g.name = request.form.get("name")
-    g.bgg = request.form.get("bgg")
+
+    if not form.validate():
+            return render_template("games/edit.html", form = form, game=g)
+
+    g.name = form.name.data
+    g.bgg = form.bgg.data
 
     db.session().commit()
 
