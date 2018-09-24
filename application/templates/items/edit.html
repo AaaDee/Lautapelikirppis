@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('games_edit_submit', game_id = game.id) }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+      <td>
+        {{ form.name }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.bgg.label }}
+      </td>
+      <td>
+        {{ form.bgg }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.bgg.errors %}
+          <li>BGG-tunnuksen on oltava joko numero tai tyhjä</li>
+          {% endfor %}
+        </ul>
+      </td>
+          </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Tallenna muokkaus"/>
+        <a href="{{ url_for('games_index') }}">Takaisin</a>
+      </td>
+    </tr>
+</form>
+
+{% endblock %}

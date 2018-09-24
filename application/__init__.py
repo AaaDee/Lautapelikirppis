@@ -15,13 +15,10 @@ else:
 # Luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)
 
-from application import views
-
-from application.games import models
-from application.games import views
-
-from application.auth import models
-from application.auth import views
+from application import models, views
+from application.auth import models, views
+from application.games import models, views
+from application.items import models, views
 
 # kirjautuminen
 from application.auth.models import User

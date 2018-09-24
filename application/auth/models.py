@@ -1,13 +1,9 @@
 from application import db
+from application.models import Base
 
-class User(db.Model):
+class User(Base):
 
     __tablename__ = "account"
-  
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-                              onupdate=db.func.current_timestamp())
 
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
@@ -15,8 +11,9 @@ class User(db.Model):
     email = db.Column(db.String(144), nullable=False)
     admin = db.Column(db.Boolean, default=False, nullable=False)
 
-    def __init__(self, name, username, password, email, location):
-        self.name = name
+    items = db.relationship("Item", backref="account", lazy=True)
+
+    def __init__(self, username, password, email, location):
         self.username = username
         self.password = password
         self.email = email

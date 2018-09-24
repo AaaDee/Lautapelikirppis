@@ -3,6 +3,9 @@ An online marketplace for buying and selling board games. Coursework project (in
 
 ## Linkkejä
 [Sovellus Herokussa](https://lautapelikirppis.herokuapp.com/)
+
+Kirjautuminen onnistuu testitunnuksella: Käyttäjä = testaaja, Salasana = testaus
+
 [Tietorakenteen kuvaus](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation//Tietorakenne.md)
 [Asennus- ja käyttöohjeet](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/Ohje.md)
 [User Storyt](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/UserStoryt.md)

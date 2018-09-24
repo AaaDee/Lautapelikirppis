@@ -1,7 +1,7 @@
 from application import db
+from application.models import Base
 
-class Game(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+class Game(Base):
 
     name = db.Column(db.String(144), nullable=False)
     bgg = db.Column(db.Integer, nullable=True)
