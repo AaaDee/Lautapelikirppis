@@ -23,7 +23,7 @@ class Item(Base):
     @staticmethod
     def items_total():
         stmt = text("SELECT COUNT(Item.id) FROM Item"
-                    " WHERE Item.sold = 0")
+                    " WHERE Item.sold = '0'")
         
         res = db.engine.execute(stmt)
         
