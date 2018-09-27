@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 
 {% block body %}
+  <p>
+    Pelejä myynnissä: {{items_total}}
+  </p>
   <table>
     <tr>
       <th>Nimi</th>
       <th>Hinta</th>
-      <th>Kuvaus</th>
+      <th>Myyjä</th>
+      <th>Sijainti</th>
+      <th>Sähköposti</th>
+      <th>Kohteen kuvaus</th>
     </tr>
     {% for item in items %}
     <tr>
       <td>{{ item.name }}</td>
       <td>{{ item.price}}</td>
+      <td>{{ item.user.username}}</td>
+      <td>{{ item.user.location}}</td>
+      <td>{{ item.user.email}}</td>
       <td>{{ item.description}}</td>
     </tr>
     {% endfor %}

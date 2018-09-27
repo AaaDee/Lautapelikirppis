@@ -11,7 +11,7 @@ class User(Base):
     email = db.Column(db.String(144), nullable=False)
     admin = db.Column(db.Boolean, default=False, nullable=False)
 
-    items = db.relationship("Item", backref="account", lazy=True)
+ #   items = db.relationship("Item", backref="account", lazy=True)
 
     def __init__(self, username, password, email, location):
         self.username = username
