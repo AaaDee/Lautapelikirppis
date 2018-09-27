@@ -4,6 +4,23 @@ Kaikki käyttötapaukset kuvattu sovelluksen käyttäjän näkökulmasta.
 
 SQL-kyselyissä käyttäjän antamia syötteitä ja muita vaihtuvia tietoja tietoja kuvataan johdonmukaisesti muuttujilla x,y,z...
 
+## Haluan selata myynnissä olevia kohteita, joita mahdollisesti haluan ostaa
+
+Tehty
+
+Hyväksymiskriteerit
+- Item-tietokannan sisältö selattavissa sivustolla
+- Selausmahdollisuus löydettävissä etusivulta
+- Näkyvissä vain ei-myydyt pelit
+
+SQL-kysely:
+
+(kohteen tiedot)
+FROM Item SELECT name, description price, account_id;
+
+(käyttäjän tiedot, linkitetty sqlalchemyn avulla)
+FROM Account SELECT location, email WHERE account_id = x;
+
 ## Haluan selata sivuston tietokannassa olevia pelejä, jotta tiedän että onko peli, jota haluan myydä vielä tietokannassa
 
 Tehty
@@ -14,7 +31,7 @@ Hyväksymiskriteerit:
 
 SQL-kysely:
 
-FROM Game SELECT *
+FROM Game SELECT *;
 
 ## Haluan lisätä uuden pelin tietokantaan, koska sitä ei ollut tietokannassa
 
@@ -39,11 +56,11 @@ Hyväksymiskriteerit:
 
 SQL-kysely:
 
-UPDATE Game SET name=x, bgg=y WHERE Game.id = z
+UPDATE Game SET name=x, bgg=y WHERE Game.id = z;
 
 ## Haluan kirjautua sivustolle, jotta voin myydä pelejäni
 
-Tekemättä
+Tehty
 
 Hyväksymiskriteerit:
 - Käyttäjä-tietokanta luotu
@@ -51,10 +68,19 @@ Hyväksymiskriteerit:
 
 ## Haluan lisätä pelin myyntiin
 
-Tekemättä
+Osittain tehty
 
 Hyväksymiskriteerit:
 - Käyttäjä- ja Myyntikohde -tietokannat luotu
-- Pelien lisääminen myyntikohteeseen mahdollista
+- (tekemättä) Pelien lisääminen myyntikohteeseen mahdollista 
 - Muiden myyntikohteen ominaisuuksien (kuten kuvaus ja hinta) asettaminen mahdollista
+
+## Haluan rekisteröityä sivustolle
+
+Tekemättä
+
+Hyväksymiskriteerit
+- Rekisteröitymislomake tehty
+- Linkki rekisteröitymiseen löydettävissä etusivulta
+
 
