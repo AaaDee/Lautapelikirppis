@@ -13,8 +13,8 @@ def games_form():
 
 @app.route("/games/edit/<game_id>", methods=["GET"])
 def games_edit(game_id):
-    g = Game.query.get(game_id)
-    return render_template("games/edit.html", game = g, form = GameForm())
+    edited_game = Game.query.get(game_id)
+    return render_template("games/edit.html", game = edited_game, form = GameForm())
 
 @app.route("/games/", methods=["POST"])
 def games_create():
@@ -23,10 +23,10 @@ def games_create():
     if not form.validate():
         return render_template("games/new.html", form = form)
 
-    g = Game(form.name.data)
-    g.bgg = form.bgg.data
+    new_game = Game(form.name.data)
+    new_game.bgg = form.bgg.data
 
-    db.session().add(g)
+    db.session().add(new_game)
     db.session().commit()
   
     return redirect(url_for("games_index"))
