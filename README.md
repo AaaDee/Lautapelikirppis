@@ -6,10 +6,10 @@ An online marketplace for buying and selling board games. Coursework project (in
 
 Kirjautuminen onnistuu testitunnuksella: Käyttäjä = testaaja, Salasana = testaus
 
-[Tietorakenteen kuvaus](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation//Tietorakenne.md)
-[Asennus- ja käyttöohjeet](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/Ohje.md)
-[User Storyt](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/UserStoryt.md)
-[Välikatsaus viikkopalautukseen ja vertaisarviointiin](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/Valikatsaus.md)
+- [Tietorakenteen kuvaus](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation//Tietorakenne.md)
+- [Asennus- ja käyttöohjeet](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/Ohje.md)
+- [User Storyt](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/UserStoryt.md)
+- [Välikatsaus viikkopalautukseen ja vertaisarviointiin](https://github.com/AaaDee/Lautapelikirppis/tree/master/documentation/Valikatsaus.md)
 
 Aihekuvaus:
 
