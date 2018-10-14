@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Lautapelikirppis</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='{{ url_for('static', filename='styles.css') }}'>
   </head>
 
   <body>
@@ -28,15 +29,19 @@
                 <a href="{{ url_for('games_form') }}">Lisää peli</a>
               </li>
             </ul>
-            <div class="form-inline mt-2 mt-md-2">
+            <div class="form-inline mt-2 mt-md-0">
 
             {% if current_user.is_authenticated %}
-            <p>
+            <p class=navtext>
               Kirjautunut nimellä {{ current_user.username }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
             </p>
             {% else %}
+            <li class="nav-item">
             <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+            </li>
+            <li class="nav-item">
             <a href="{{ url_for('auth_register') }}">Rekisteröidy</a>
+            </li>
             {% endif %}
 
             </div>
