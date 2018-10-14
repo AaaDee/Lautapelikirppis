@@ -28,7 +28,7 @@
                 <a href="{{ url_for('games_form') }}">Lisää peli</a>
               </li>
             </ul>
-            <div class="form-inline mt-2 mt-md-0">
+            <div class="form-inline mt-2 mt-md-2">
 
             {% if current_user.is_authenticated %}
             <p>
@@ -36,6 +36,7 @@
             </p>
             {% else %}
             <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+            <a href="{{ url_for('auth_register') }}">Rekisteröidy</a>
             {% endif %}
 
             </div>

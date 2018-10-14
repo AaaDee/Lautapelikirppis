@@ -1,9 +1,10 @@
 from application import db
 from application.models import Base
+from flask_login import UserMixin
 
-class User(Base):
+class User(Base, UserMixin):
 
-    __tablename__ = "account"
+    __tablename__ = 'account'
 
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
@@ -11,22 +12,13 @@ class User(Base):
     email = db.Column(db.String(144), nullable=False)
     admin = db.Column(db.Boolean, default=False, nullable=False)
 
- #   items = db.relationship("Item", backref="account", lazy=True)
+    def check_password(self, input_password):
+        if self.password == input_password:
+            return True
+        return False
 
     def __init__(self, username, password, email, location):
         self.username = username
         self.password = password
         self.email = email
         self.location = location
-  
-    def get_id(self):
-        return self.id
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def is_authenticated(self):
-        return True

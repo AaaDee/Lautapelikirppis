@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% from 'formmacros.html' import render_field %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('auth_register') }}">
+
+        {{ render_field(form.username) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.location) }}
+  
+      <td colspan="2">
+        <input type="submit" value="Rekisteröidy"/>
+      </td>
+      
+  </form>
+
+{% endblock %}
