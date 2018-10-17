@@ -32,9 +32,16 @@
             <div class="form-inline mt-2 mt-md-0">
 
             {% if current_user.is_authenticated %}
-            <p class=navtext>
-              Kirjautunut nimellä {{ current_user.username }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
-            </p>
+            <li class="nav-item navtext">
+              Kirjautunut nimellä {{ current_user.username }}. 
+            </li>
+            <li class="nav-item">
+              <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url_for('auth_mypage') }}">Oma sivu</a>
+            </li>
+
             {% else %}
             <li class="nav-item">
             <a href="{{ url_for('auth_login') }}">Kirjaudu</a>

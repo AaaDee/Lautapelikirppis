@@ -10,7 +10,7 @@ from application.games.models import Game
 @app.route("/items", methods=["GET"])
 def items_index():
     return render_template("items/list.html", 
-                           items = Item.query.all(),
+                           items = Item.query.filter_by(sold = False),
                            items_total=Item.items_total())
 
 @app.route("/items/new/")
@@ -47,7 +47,7 @@ def item_add_games(item_id):
 
     return render_template("items/addgames.html", form = form, item = new_item)
 
-@app.route("/items/new/addgames/<item_id>", methods=["Post"])
+@app.route("/items/new/addgames/<item_id>", methods=["POST"])
 @login_required
 def item_submit_game(item_id):
     form = GameToItemForm(request.form)
@@ -65,3 +65,10 @@ def item_submit_game(item_id):
 
     return redirect(url_for("item_add_games", item_id = new_item.id))
 
+@app.route("/items/sold/<item_id>", methods=["POST"])
+@login_required
+def item_mark_as_sold(item_id):
+    item = Item.query.get(item_id)
+    item.sold = True
+    db.session.commit()
+    return redirect(url_for("auth_mypage"))

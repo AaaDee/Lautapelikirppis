@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import render_myitems %}
+
+{% block body %}
+
+<ul class=userdetails>
+ <li>Käyttäjänimi: {{ user.username }} </li>
+ <li>Sijainti: {{ user.location}} </li>
+ <li>Sähköposti: {{ user.email }} </li>
+</ul>
+
+<p>Myynnissä olevat pelit:</p>
+
+{{ render_myitems(sold = False, user=user) }}
+
+{% endblock %}

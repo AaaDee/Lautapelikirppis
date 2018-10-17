@@ -21,10 +21,12 @@ class Item(Base):
     sold = db.Column(db.Boolean, default=False, nullable=False)
     date_sold = db.Column(db.DateTime)
 
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
+    
     
     # References to external tables
-    user = db.relationship('User', foreign_keys='Item.account_id')
+    user = db.relationship('User',  foreign_keys='Item.account_id')
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
+
     games = db.relationship('Game', secondary=Game_item,
                                 lazy='subquery')
 
@@ -36,10 +38,10 @@ class Item(Base):
     
     @staticmethod
     def items_total():
-        stmt = """
-        SELECT COUNT(Item.id) FROM Item
+        stmt = text("""
+        SELECT * FROM Item
         WHERE NOT sold
-        """
+        """)
                     
         res = db.engine.execute(stmt)
         
@@ -52,5 +54,13 @@ class Item(Base):
     def item_has_a_game(item):
         number_of_games = len(item.games)
         return number_of_games != 0
+    
+    
+
+    
+
+    
+   
+
 
 

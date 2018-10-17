@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm
+
 
 @app.route('/auth/login', methods = ['GET', 'POST'])
 def auth_login():
@@ -46,3 +47,8 @@ def auth_register():
     db.session().commit()
 
     return redirect(url_for('auth_login'))
+
+@app.route('/mypage', methods = ['GET'])
+@login_required
+def auth_mypage():
+    return render_template('auth/mypage.html', user = current_user)
