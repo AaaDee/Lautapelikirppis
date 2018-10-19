@@ -11,9 +11,9 @@ def check_game_exists(form, field):
         raise ValidationError(message)
 
 class ItemForm(Form):
-    name = StringField("Nimi", [validators.DataRequired(message = "Nimi ei saa olla tyhjä")])
+    name = StringField("Myyntikohteen nimi", [validators.DataRequired(message = "Nimi ei saa olla tyhjä")])
     price = IntegerField("Hinta", [validators.DataRequired()])
-    description = StringField("Kuvaus")
+    description = StringField("Kohteen kuvaus")
 
     class Meta:
         csrf = False

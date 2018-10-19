@@ -1,12 +1,9 @@
 {% extends "layout.html" %}
-{% from 'macros.html' import render_field %}
+{% from 'macros.html' import render_field, render_games_in_item %}
 
 {% block body %}
-<p>Tämänhetkiset pelit</p>
 
-{% for game in item.games %}
-<td>{{ game.name }}</td>
-{% endfor %}
+{{ render_games_in_item(item) }}
 
 <form method="POST" action="{{ url_for('item_submit_game', item_id = item.id) }}">
     {{ render_field(form.name) }}

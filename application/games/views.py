@@ -52,7 +52,7 @@ def games_delete(game_id):
     game = Game.query.get(game_id)
     
     if (game.is_game_in_items()):
-        error_message = "Poisto ei ole sallittu, koska peli on käytössä myyntikohteissa."
+        error_message = "Poisto ei ole sallittu, koska peli on käytössä myynnissä olevassa tai myydyssä kohteessa. Poista myyntikohteet ensin."
         return render_template('games/list.html', games = Game.query.all(), error = error_message)
 
     db.session().delete(game)

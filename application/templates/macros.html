@@ -13,43 +13,51 @@
 
 {% macro render_myitems(sold, user) %}
 <table class=itemlist>
-    <tr>
-      <th>Nimi</th>
-      <th>Hinta</th>
-      <th>Kohteen kuvaus</th>
-    </tr>
-    {% for item in user.items_if_sold(sold=sold) %}
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>{{ item.price}}</td>
-      <td>{{ item.description}}</td>
-      
-      {% if sold == False %}
-      <td>
-        <form method='POST' action='{{ url_for('item_mark_as_sold', item_id = item.id) }}'>
-            <input type='submit' value='Merkitse myydyksi'/>
-        </form>
-      </td>
-      <td>
-        <form method='POST' action='{{ url_for('index') }}'>
-            <input type='submit' value='Muokkaa'/>
-        </form>
-      </td>
-      <td>
-        <form method='POST' action='{{ url_for('index') }}'>
-            <input type='submit' value='Poista'/>
-        </form>
-      </td>
-      {% endif %}
-
-    </tr>
-    <tr>
-      <td>Kohteen pelit:</td>
-    </tr>
-      {% for game in item.games %}
-      <tr><td>{{ game.name }}</td></tr>
-      {% endfor %}
+  <tr>
+    <th>Nimi</th>
+    <th>Hinta</th>
+    <th>Kohteen kuvaus</th>
+  </tr>
+  {% for item in user.items_if_sold(sold=sold) %}
+  <tr>
+    <td>{{ item.name }}</td>
+    <td>{{ item.price}}</td>
+    <td>{{ item.description}}</td>
     
+    {% if sold == False %}
+    <td>
+      <form method='POST' action='{{ url_for('item_mark_as_sold', item_id = item.id) }}'>
+          <input type='submit' value='Merkitse myydyksi'/>
+      </form>
+    </td>
+    <td>
+      <form method='GET' action='{{ url_for('item_edit', item_id = item.id ) }}'>
+          <input type='submit' value='Muokkaa'/>
+      </form>
+    </td>
+    <td>
+      <form method='POST' action='{{ url_for('index') }}'>
+          <input type='submit' value='Poista'/>
+      </form>
+    </td>
+    {% endif %}
+
+  </tr>
+  <tr>
+    <td>Kohteen pelit:</td>
+  </tr>
+    {% for game in item.games %}
+    <tr><td>{{ game.name }}</td></tr>
     {% endfor %}
-  </table>
+  
+  {% endfor %}
+</table>
+{% endmacro %}
+
+{% macro render_games_in_item(item) %}
+<p>Tämänhetkiset pelit</p>
+
+{% for game in item.games %}
+<td>{{ game.name }}</td>
+{% endfor %}
 {% endmacro %}
