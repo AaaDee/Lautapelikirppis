@@ -72,3 +72,6 @@ def item_mark_as_sold(item_id):
     item.sold = True
     db.session.commit()
     return redirect(url_for("auth_mypage"))
+
+
+# @app.route("/items/sold/<item_id>", methods=["POST"])

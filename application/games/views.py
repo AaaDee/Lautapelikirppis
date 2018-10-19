@@ -5,7 +5,7 @@ from application.games.forms import GameForm
 
 @app.route('/games', methods=['GET'])
 def games_index():
-    return render_template('games/list.html', games = Game.query.all())
+    return render_template('games/list.html', games = Game.query.all(), error = "")
 
 @app.route('/games/new/')
 def games_form():
@@ -49,9 +49,13 @@ def games_edit_submit(game_id):
 
 @app.route('/games/delete/<game_id>', methods=['POST'])
 def games_delete(game_id):
-    g = Game.query.get(game_id)
+    game = Game.query.get(game_id)
     
-    db.session().delete(g)
+    if (game.is_game_in_items()):
+        error_message = "Poisto ei ole sallittu, koska peli on käytössä myyntikohteissa."
+        return render_template('games/list.html', games = Game.query.all(), error = error_message)
+
+    db.session().delete(game)
     db.session().commit()
 
     return redirect(url_for('games_index'))
