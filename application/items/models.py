@@ -2,6 +2,7 @@ from application import db
 from application.models import Base
 
 from sqlalchemy.sql import text
+from application.games.models import Game
 
 # Join table for games and items
 Game_item = db.Table('game_item',
@@ -36,6 +37,7 @@ class Item(Base):
         self.description = description
         self.price = price
     
+    
     @staticmethod
     def items_total():
         stmt = text("""
@@ -54,6 +56,28 @@ class Item(Base):
     def item_has_a_game(item):
         number_of_games = len(item.games)
         return number_of_games != 0
+    
+    @staticmethod
+    def delete_game(item_id, game_id):
+        print('deleting games with id ' + str(game_id))
+        item = Item.query.get(item_id)
+        for game in item.games[:]: 
+            print('game id: ' + str(game.id))           
+            if str(game.id) == str(game_id):
+                print('found game!')
+                item.games.remove(game)
+            else: print('no match')
+    
+    @staticmethod
+    def check_game_in_item(item, gameName):
+        newGame = Game.query.filter_by(name = gameName).first()
+
+        for game in item.games:
+            if str(game.id) == str(newGame.id):
+                return True
+        return False
+
+
     
     
 

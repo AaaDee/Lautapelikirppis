@@ -5,21 +5,28 @@
 <p>{{ error }}</p>
 <form method="POST" action="{{ url_for('item_edit', item_id = item.id) }}">
 
-    {{ render_field(form.name) }}
-    {{ render_field(form.price) }}
-    {{ render_field(form.description) }}
-
+    {{ render_field(itemForm.name) }}
+    {{ render_field(itemForm.price) }}
+    {{ render_field(itemForm.description) }}
   <td colspan="2">
-    <input type="submit" value="Päivitä"/>
+    <input type="submit" value="Päivitä kohteen tiedot"/>
   </td> 
 </form>
 
-<form method="POST" action="{{ url_for('item_check_edit', item_id = item.id) }}">
-<td colspan="2">
-    <input type="submit" value="Valmis"/>
-</td>
+{{ render_games_in_item(item) }}
+
+<form method="POST" action="{{ url_for('item_submit_game_edit', item_id = item.id) }}">
+  {{ render_field(gameForm.name) }}
+  
+  <td colspan="2">
+      <input type="submit" value="Lisää peli"/>
+  </td>
 </form>
 
-{{ render_games_in_item(item) }}
+<form method="GET" action="{{ url_for('auth_mypage') }}">
+  <p><input type="submit" value="Valmis"/></p>
+</form>
+
+
 
 {% endblock %}

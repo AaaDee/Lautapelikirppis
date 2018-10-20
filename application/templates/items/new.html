@@ -8,8 +8,12 @@
       {{ render_field(form.price) }}
       {{ render_field(form.description) }}
 
+      <p>Lisää kohteeseen myös yksi peli. Voit lisätä lisää pelejä seuraavalla sivulla</p>
+
+      {{ render_field(form.gameName)}}
+
     <td colspan="2">
-      <input type="submit" value="Lisää"/>
+      <input type="submit" value="Luo kohde"/>
     </td>
     
 </form>

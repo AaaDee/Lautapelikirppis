@@ -14,6 +14,24 @@ def edit_defaults(item, form):
     form.description.default = item.description
     form.process()
 
+def add_gameName_to_item(item, gameName):
+    game = Game.query.filter_by(name = gameName).first()
+
+    item.games.append(game)
+    db.session.commit()
+
+# Edit-template is rendered multiple times, so it's grouped here
+def edit_template(item, itemForm, gameForm = 'default', errorMessage = ''):
+    if gameForm == 'default':
+        gameForm = GameToItemForm()
+    return render_template('items/edit.html', item = item, itemForm = itemForm, gameForm = gameForm, error = errorMessage)
+
+def game_already_in_item_error_message():
+        errorMessage = '''
+                        Lisäämäsi peli on jo myyntikohteessa. Jos haluat myydä useamman kopion samasta
+                        pelistä, luo jokaiselle oma myyntikohde
+                        '''
+        return errorMessage
 
 @app.route('/items', methods=['GET'])
 def items_index():
@@ -39,9 +57,11 @@ def items_create():
                     form.price.data)
     
     new_item.account_id = current_user.id
-
+    gameName = form.gameName.data
 
     db.session().add(new_item)
+    add_gameName_to_item(new_item, gameName)
+
     db.session().commit()
   
     return redirect(url_for('item_add_games', item_id = new_item.id))
@@ -53,25 +73,50 @@ def item_add_games(item_id):
     form = GameToItemForm(request.form)
     new_item = Item.query.get(item_id)
 
-    return render_template('items/addgames.html', form = form, item = new_item)
+    return render_template('items/addgames.html', form = form, item = new_item, error = '')
 
 @app.route('/items/new/addgames/<item_id>', methods=['POST'])
 @login_required
 def item_submit_game(item_id):
     form = GameToItemForm(request.form)
-    new_item = Item.query.get(item_id)
+    item = Item.query.get(item_id)
 
     if not form.validate():
-        return render_template('items/addgames.html', form = form, item = new_item)
+        return render_template('items/addgames.html', form = form, item = item, error = '')
     
-    # temp solution, when updated also update the first game loop in the beginning
     gameName = form.name.data
-    game = Game.query.filter_by(name = gameName).first()
 
-    new_item.games.append(game)
-    db.session.commit()
+    if Item.check_game_in_item(item, gameName):
+        errorMessage = game_already_in_item_error_message()
+        return render_template('items/addgames.html', form = form, item = item, error = errorMessage)
+    
+    
+    add_gameName_to_item(item, gameName)
 
-    return redirect(url_for('item_add_games', item_id = new_item.id))
+    return redirect(url_for('item_add_games', item_id = item.id))
+
+
+@app.route('/items/edit/addgames/<item_id>', methods=['POST'])
+@login_required
+def item_submit_game_edit(item_id):
+    gameForm = GameToItemForm(request.form)
+    item = Item.query.get(item_id)
+
+    itemForm = ItemForm()
+    edit_defaults(item, itemForm)
+
+    if not gameForm.validate():
+        return edit_template(item, itemForm, gameForm = gameForm)
+    
+    gameName = gameForm.name.data
+
+    if Item.check_game_in_item(item, gameName):
+        errorMessage = game_already_in_item_error_message()
+        return edit_template(item, itemForm, gameForm = gameForm, errorMessage = errorMessage)
+    
+    add_gameName_to_item(item, gameName)
+
+    return edit_template(item, itemForm , gameForm = gameForm)
 
 @app.route('/items/sold/<item_id>', methods=['POST'])
 @login_required
@@ -94,19 +139,55 @@ def item_edit(item_id):
         
 
     else:
-        if not form.validate():
-            return render_template('items/edit.html', item = edited_item , form = edit_form, error = '')
-        
-        edited_item.name = form.name.data
-        edited_item.price = form.price.data
-        edited_item.description = item.description.data
+        edit_form = ItemForm(request.form)
 
-        db.session().commit()
+        if not edit_form.validate():
+            return edit_template(edited_item, edit_form)
+        
+        edited_item.name = edit_form.name.data
+        edited_item.price = edit_form.price.data
+        edited_item.description = edit_form.description.data
 
     # Return to the same edit page in both methods
-    return render_template('items/edit.html', item = edited_item, form = edit_form, error = '')
+    return edit_template(edited_item, edit_form)
 
 
+@app.route('/items/edit/deletegame/<item_id>/<game_id>', methods=['POST'])
+@login_required
+def delete_game_in_item(item_id, game_id):
+    
+    item = Item.query.get(item_id)
+
+    if (len(item.games) == 1):
+        errorMessage = 'Myyntikohteessa on oltava vähintään yksi peli'
+        form = ItemForm()
+        edit_defaults(item, form)
+        
+        return edit_template(item, form, errorMessage = errorMessage)
+
+    Item.delete_game(item_id, game_id)
+
+    db.session.commit()
+
+    form = ItemForm()
+    edit_defaults(item, form)
+    
+
+        
+    return edit_template(item, form) 
+
+@app.route('/items/delete/<item_id>/<path>', methods=['POST'])
+@login_required
+def item_delete(item_id, path):
+    item =Item.query.get(item_id)
+    
+    db.session().delete(item)
+    db.session().commit()
+
+    return redirect(url_for('auth_mypage'))
+
+
+'''
 @app.route('/items/check/<item_id>/', methods=['POST'])
 @login_required
 def item_check_edit(item_id):
@@ -114,9 +195,12 @@ def item_check_edit(item_id):
 
     if (len(edited_item.games) == 0):
         errorMessage = 'Myyntikohteessa on oltava vähintään yksi peli'
-        edit_form = ItemForm
+        edit_form = ItemForm()
         edit_defaults(edited_item, edit_form)
         
         return render_template('items/edit.html', item = edited_item, form = edit_form, error = errorMessage)
     
+    db.session.commit()
+    
     return redirect(url_for('auth_mypage'))
+'''
