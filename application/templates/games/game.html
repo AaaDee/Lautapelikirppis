@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_BGG_link %}
+  
+{% block body %}
+<ul>
+    <li>Pelin nimi: {{ game.name }}</li>
+    <li>BGG-tunnus: {{ render_BGG_link(game.bgg) }}</li>
+</ul>
+
+{% endblock %}

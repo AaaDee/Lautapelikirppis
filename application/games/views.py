@@ -59,3 +59,9 @@ def games_delete(game_id):
     db.session().commit()
 
     return redirect(url_for('games_index'))
+
+@app.route('/games/view/<game_id>', methods=['GET'])
+def game_view(game_id):
+    game = Game.query.get(game_id)
+
+    return render_template('games/game.html', game = game)

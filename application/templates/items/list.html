@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% from 'macros.html' import render_game_link %}
 
 {% block body %}
   <p>
@@ -26,7 +27,7 @@
       <td>Kohteen pelit:</td>
     </tr>
       {% for game in item.games %}
-      <tr><td>{{ game.name }}</td></tr>
+      <tr><td>{{ render_game_link(game) }}</td></tr>
       {% endfor %}
     
     {% endfor %}

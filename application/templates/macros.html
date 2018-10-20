@@ -12,6 +12,21 @@
 </dd>
 {% endmacro %}
 
+<!--Renders a link to BoardGameGeek.com -site using the bgg-id if available-->
+{% macro render_BGG_link(bgg_id) %}
+{% if bgg_id == None %}
+  -
+{% else %}
+  <a href = "https://boardgamegeek.com/boardgame/{{bgg_id}}" >{{ bgg_id }}</a>
+{% endif %}
+{% endmacro %}
+
+<!--Renders a link to this site's game page-->
+{% macro render_game_link(game) %}
+  <a href = "{{ url_for('game_view', game_id = game.id) }}"} >{{ game.name }}</a>
+{% endmacro %}
+
+
 <!-- Renders items of a given user based on sold/unsold criterion-->
 {% macro render_myitems(sold, user) %}
 <table class=itemlist>
@@ -49,7 +64,7 @@
     <td>Kohteen pelit:</td>
   </tr>
     {% for game in item.games %}
-    <tr><td>{{ game.name }}</td></tr>
+    <tr><td>{{ render_game_link(game) }}</td></tr>
     {% endfor %}
   
   {% endfor %}
@@ -62,7 +77,7 @@
 
 
 {% for game in item.games %}
-<td>{{ game.name }}</td>
+<td>{{ render_game_link(game)}}</td>
 <td>
   <form method="POST" action="{{ url_for('delete_game_in_item', item_id = item.id, game_id = game.id) }}">
       <input type="submit" value="Poista"/>
@@ -70,3 +85,5 @@
 </td>
 {% endfor %}
 {% endmacro %}
+
+
