@@ -51,16 +51,15 @@ class Game(Base):
         search_id = self.id
         
         stmt = text('''
-        SELECT COUNT(Game_item.game_id) AS totalAmount, AVG(Item.price) AS avgPrice, 
+        SELECT COUNT(*) AS totalAmount, AVG(Item.price) AS avgPrice, 
         Game_item.item_id, Item.sold, Temp.itemAmount as itemAmount
         FROM Game_item
         LEFT JOIN ITEM ON Item.id = Game_item.item_id
-        LEFT JOIN (
-                   SELECT count(*) AS itemAmount, item_id 
-                   FROM Game_item 
-                   GROUP BY item_id 
-                   ) AS Temp ON Temp.item_id = Game_item.item_id
-        WHERE (game_id = :id AND Item.sold AND itemAmount = 1)
+        LEFT JOIN (SELECT count(*) AS itemAmount, item_id 
+        FROM Game_item 
+        GROUP BY item_id) Temp
+        ON Temp.item_id = Game_item.item_id
+        WHERE Game_item.game_id = :id AND Item.sold AND itemAmount = 1
         GROUP BY Game_item.game_id
         ''').params(id = search_id)
 
@@ -91,16 +90,15 @@ class Game(Base):
         search_id = self.id
         
         stmt = text('''
-        SELECT COUNT(Game_item.game_id) AS totalAmount, AVG(Item.price) AS avgPrice, 
+        SELECT COUNT(*) AS totalAmount, AVG(Item.price) AS avgPrice, 
         Game_item.item_id, Item.sold, Temp.itemAmount as itemAmount
         FROM Game_item
         LEFT JOIN ITEM ON Item.id = Game_item.item_id
-        LEFT JOIN (
-                   SELECT count(*) AS itemAmount, item_id 
-                   FROM Game_item 
-                   GROUP BY item_id 
-                   ) AS Temp ON Temp.item_id = Game_item.item_id
-        WHERE (game_id = :id AND Item.sold AND itemAmount > 1)
+        LEFT JOIN (SELECT count(*) AS itemAmount, item_id 
+        FROM Game_item 
+        GROUP BY item_id) Temp
+        ON Temp.item_id = Game_item.item_id
+        WHERE Game_item.game_id = :id AND Item.sold AND itemAmount > 1
         GROUP BY Game_item.game_id
         ''').params(id = search_id)
 
