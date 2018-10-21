@@ -52,8 +52,7 @@ class Game(Base):
         search_id = self.id
         
         stmt = text('''
-        SELECT COUNT(*) AS totalAmount, AVG(Item.price) AS avgPrice, 
-        Game_item.item_id
+        SELECT COUNT(*) AS totalAmount, AVG(Item.price) AS avgPrice
         FROM Game_item
         LEFT JOIN ITEM ON Item.id = Game_item.item_id
         LEFT JOIN (SELECT count(*) AS itemAmount, item_id 
@@ -91,8 +90,7 @@ class Game(Base):
         search_id = self.id
         
         stmt = text('''
-        SELECT COUNT(*) AS totalAmount, AVG(Item.price) AS avgPrice, 
-        Game_item.item_id
+        SELECT COUNT(*) AS totalAmount, AVG(Item.price) AS avgPrice 
         FROM Game_item
         LEFT JOIN ITEM ON Item.id = Game_item.item_id
         LEFT JOIN (SELECT count(*) AS itemAmount, item_id 

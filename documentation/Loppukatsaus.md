@@ -12,6 +12,9 @@ Lisäksi tunnustan, että pelien ja myyntikohteiden yhteys on hieman kummallinen
 
 Lisäksi myyntikohteiden muokkaaminen on paikoitellen hieman hankalaa, koska sovellus pyrkii välttämään tilanteita, jossa kohteessa ei olisi yhtään peliä. Jatkokehityksessä ajattelin ratkaista ongelman evästepohjaisen ratkaisun avulla, jossa kaikki muutokset kerätään yhteen transaktioon, jonka oikeellisuus tarkastetaan kerralla ja viedään tietokantaan vasta tämän tarkistuksen jälkeen.
 
+Viimeinen palautus on muutaman minuutin myöhässä johtuen viime hetkillä ilmenneistä ongelmista PostgreSQL:n kanssa. Jos työ arvioidaan 23.59 palautusajan puitteissa, niin
+sivun https://lautapelikirppis.herokuapp.com/games/view/ myyntihistoria-kohdan yhteenvetokyselyt tulee jättää huomiotta.
+
 ## 5-arvosanan minimivaatimukset
 Ennen varsinaista pisteytystä sovellus täyttää 5-arvosanan minimiedellytykset seuraavalla tavalla:
 - Toimiva tietokantaa käyttävä web-sovellus: On
