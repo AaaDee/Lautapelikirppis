@@ -32,11 +32,11 @@ class Game(Base):
         search_id = self.id
         
         stmt = text('''
-        SELECT COUNT(Game_item.game_id), Item.sold
+        SELECT COUNT(Game_item.game_id), Item.sold, Game_item.game_id
         FROM Game_item
-        LEFT JOIN Item ON Item.id = Game_item.item_id
-        WHERE game_id = 45 AND NOT Item.sold
-        ''').params(id = search_id)
+        LEFT JOIN Item ON Game_item.item_id = Item.id
+        WHERE Game_item.game_id = 45 AND NOT Item.sold
+        ''')
 
         res = db.engine.execute(stmt)
 
