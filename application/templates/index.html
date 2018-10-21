@@ -1,7 +1,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
+  
+  <h2 class=subTitle> Tervetuloa lautapelikirppikselle! </h2>
   <p>
-    Tervetuloa! Sivusto työn alla.
+    Selaa myynnissä olevia
+    <a href = "{{url_for('items_index')}}">kohteita</a>
+    tai
+    <a href = "{{url_for('auth_login')}}">kirjaudu</a>
+    sisään lisätäksesi myyntiin omia pelejäsi.
   </p>
+
+
+  <h2 class = "didyouknow">Tiesitkö että...</h2>
+  <p>sivuston aktiivisin myyntipaikka on {{ dykCity }}, myytyjä kohteita yhteensä {{ dykAmount }} kappaletta?</p>
 {% endblock %}

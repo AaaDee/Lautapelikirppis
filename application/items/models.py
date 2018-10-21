@@ -77,6 +77,26 @@ class Item(Base):
                 return True
         return False
     
+    @staticmethod
+    def most_active_city():
+        stmt = text('''
+        SELECT Account.location, COUNT(*) as amount FROM Item
+        LEFT JOIN Account ON (Item.account_id = Account.id)
+        WHERE sold
+        GROUP BY Account.location
+        ORDER BY amount
+        LIMIT 1
+        ''')
+
+        res = db.engine.execute(stmt)
+        
+        result = [{'Place': 'Kanada', 'Amount': 0}]
+        for row in res:
+            result = []
+            result.append({'Place': row[0], 'Amount': row[1]})
+        
+        return result
+    
     
 
 

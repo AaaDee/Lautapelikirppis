@@ -45,4 +45,57 @@ CREATE TABLE game (
 	PRIMARY KEY (id)
 )
 
+### Käyttäjä
+
+CREATE TABLE account (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	username VARCHAR(144) NOT NULL, 
+	password VARCHAR(144) NOT NULL, 
+	location VARCHAR(144) NOT NULL, 
+	email VARCHAR(144) NOT NULL, 
+	admin BOOLEAN NOT NULL, 
+	PRIMARY KEY (id), 
+	CHECK (admin IN (0, 1))
+)
+
+### Myyntikohde
+
+CREATE TABLE item (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	name VARCHAR(144) NOT NULL, 
+	description VARCHAR(1000) NOT NULL, 
+	price INTEGER NOT NULL, 
+	sold BOOLEAN NOT NULL, 
+	date_sold DATETIME, 
+	account_id INTEGER, 
+	PRIMARY KEY (id), 
+	CHECK (sold IN (0, 1)), 
+	FOREIGN KEY(account_id) REFERENCES account (id)
+)
+
+### Pelimyynti
+
+CREATE TABLE game_item (
+	game_id INTEGER NOT NULL, 
+	item_id INTEGER NOT NULL, 
+	PRIMARY KEY (game_id, item_id), 
+	FOREIGN KEY(game_id) REFERENCES game (id), 
+	FOREIGN KEY(item_id) REFERENCES item (id)
+)
+
+## Vastaavuudeet
+
+Sovelluksen koodi on kirjoitettu englanniksi, kun taas dokumentaatio on pyritty pitämään suomenkielisenä. Tietokantakaavion ja koodissa käytettyjen taulujen vastaavuudet ovat seuraavat:
+
+- Peli: Game
+- Käyttäjä: User
+- Myyntikohde: Item
+- Pelimyynti: Game_item 
+
+
+
 

@@ -3,21 +3,21 @@
 
 {% block body %}
 <p>{{ error }} </p>
-  <table>
+  <table class = "gameTable">
     <tr>
       <th>Peli</th>
-      <th>BGG-tunnus</th>
+      <th class = "bggColumn">BGG-tunnus</th>
     </tr>
     {% for game in games %}
     <tr>
       <td>{{ render_game_link(game) }}</td>
       <td>{{ render_BGG_link(game.bgg) }}</td>
-      <td>
+      <td class = "button">
           <form method='GET' action='{{ url_for('games_edit', game_id=game.id) }}'>
               <input type='submit' value='Muokkaa'/>
             </form>
       </td>
-      <td>
+      <td class = "button">
           <form method='POST' action='{{ url_for('games_delete', game_id=game.id) }}'>
               <input type='submit' value='Poista'/>
             </form>

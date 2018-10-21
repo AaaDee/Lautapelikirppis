@@ -185,22 +185,3 @@ def item_delete(item_id, path):
     db.session().commit()
 
     return redirect(url_for('auth_mypage'))
-
-
-'''
-@app.route('/items/check/<item_id>/', methods=['POST'])
-@login_required
-def item_check_edit(item_id):
-    edited_item = Item.query.get(item_id)
-
-    if (len(edited_item.games) == 0):
-        errorMessage = 'Myyntikohteessa on oltava vähintään yksi peli'
-        edit_form = ItemForm()
-        edit_defaults(edited_item, edit_form)
-        
-        return render_template('items/edit.html', item = edited_item, form = edit_form, error = errorMessage)
-    
-    db.session.commit()
-    
-    return redirect(url_for('auth_mypage'))
-'''

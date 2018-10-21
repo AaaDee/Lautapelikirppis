@@ -68,7 +68,7 @@ Hyväksymiskriteerit:
 
 ## Haluan lisätä pelin myyntiin
 
-Osittain tehty
+Tehty
 
 Hyväksymiskriteerit:
 - Käyttäjä- ja Myyntikohde -tietokannat luotu
@@ -77,10 +77,49 @@ Hyväksymiskriteerit:
 
 ## Haluan rekisteröityä sivustolle
 
-Tekemättä
+Tehty
 
 Hyväksymiskriteerit
 - Rekisteröitymislomake tehty
 - Linkki rekisteröitymiseen löydettävissä etusivulta
+
+## Haluan muokata/poistaa omia myyntikohteitani, koska olen myynyt ne tai niissä on virhe
+
+Tehty
+
+Hyväksymiskriteerit
+- Myyntikohteissa täysi CRUD
+- Tämän lisäksi myös kohteen pelien muokkaaminen myyntikohteessa on mahdollista
+- Muokkauksen käyttöliittymä toteutettu selaimessa
+
+## Haluan tietää pelin aiempien myyntien keskihinnan, jotta osaan määritellä oman pelini hinnan
+
+Tehty
+
+Hyväksymiskriteerit
+- Hinnan muodostava yhteenvetokysely tehty
+- Kyselyt eriytetty yksittäisille peleille ja pelipaketeille (jottei pelipaketin hinta sotke yksittäisen pelin hintaa)
+- Hintatiedot nähtävissä pelin sivulla
+
+SQL-kysely (yksittäiskappaleille):
+
+SELECT COUNT(Game_item.game_id) AS totalAmount,  
+AVG(Item.price) AS avgPrice, Game_item.item_id,  
+Item.sold, Temp.itemAmount as itemAmount  
+FROM Game_item  
+LEFT JOIN ITEM ON Item.id = Game_item.item_id 
+
+LEFT JOIN (  
+            SELECT count(*) AS itemAmount, item_id   
+           FROM Game_item   
+           GROUP BY item_id   
+           )
+
+AS Temp ON Temp.item_id = Game_item.item_id  
+WHERE (game_id = x AND Item.sold AND itemAmount = 1)  
+GROUP BY Game_item.game_id;
+
+
+
 
 
