@@ -34,8 +34,8 @@ class Game(Base):
         stmt = text('''
         SELECT COUNT(Game_item.game_id), Item.sold
         FROM Game_item
-        LEFT JOIN ITEM ON Item.id = Game_item.item_id
-        WHERE (game_id = :id AND NOT Item.sold)
+        LEFT JOIN Item ON Item.id = Game_item.item_id
+        WHERE game_id = 45 AND NOT Item.sold
         ''').params(id = search_id)
 
         res = db.engine.execute(stmt)
