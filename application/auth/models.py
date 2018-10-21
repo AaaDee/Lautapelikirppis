@@ -30,3 +30,10 @@ class User(Base, UserMixin):
     def items_if_sold(self, sold):
         items = Item.query.filter_by(sold = sold, user = self)
         return items
+
+# Method for checking, if a username is already in the database
+def check_username(nameGiven):
+    user = User.query.filter_by(username = nameGiven).first()
+    if (user == None):
+        return False
+    return True

@@ -13,8 +13,8 @@ def check_game_exists(form, field):
 
 class ItemForm(Form):
     name = StringField('Myyntikohteen nimi', [validators.DataRequired(message = 'Nimi ei saa olla tyhjä')])
-    price = IntegerField('Hinta', [validators.DataRequired()])
-    description = StringField('Kohteen kuvaus')
+    price = IntegerField('Hinta', [validators.DataRequired(message = 'Anna hinta euroissa. Ei tekstiä eikä senttihintoja!')])
+    description = StringField('Kohteen kuvaus', [validators.Length(max = 100, message = 'Kuvaus saa olla korkeintaan 100 merkkiä pitkä')])
     gameName = StringField('Pelin nimi', 
                            [validators.DataRequired(message = 'Nimi ei saa olla tyhjä'),
                            check_game_exists])
