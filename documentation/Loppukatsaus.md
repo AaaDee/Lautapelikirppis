@@ -6,6 +6,8 @@ Projekti on nyt arvioinnin ja aikataulun kannalta paketissa. Sovellus täyttää
 
 Ehkä keskeisin sovelluksen puute on tällä hetkellä se, että sen ulkoasu on todella askeettinen. Bootstrap-kirjasto on käytössä yläpalkin osalta, mutta sitä ei ole viety kaikkialle sovellukseen. Toisaalta sovelluksen keskeinen toiminnallisuus on saavutettavissa ja käytettävissä, joten toivottavasti karuus ei ulotu liikaa itse toiminnallisuuden tielle.
 
+Näkymien sivutusta ei myöskään ole valitettavasti vielä toteutettu.
+
 Lisäksi tunnustan, että pelien ja myyntikohteiden yhteys on hieman kummallinen. Halusin toisaalta, että myyntikohteissa voi olla useampi peli, mutta toisaalta, että yksittäisten pelien myyntidatasta pidetään kirjaa. Toteutettu ratkaisu on nyt näiden näkökulmien kompromissi.
 
 Lisäksi myyntikohteiden muokkaaminen on paikoitellen hieman hankalaa, koska sovellus pyrkii välttämään tilanteita, jossa kohteessa ei olisi yhtään peliä. Jatkokehityksessä ajattelin ratkaista ongelman evästepohjaisen ratkaisun avulla, jossa kaikki muutokset kerätään yhteen transaktioon, jonka oikeellisuus tarkastetaan kerralla ja viedään tietokantaan vasta tämän tarkistuksen jälkeen.

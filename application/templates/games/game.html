@@ -9,5 +9,10 @@
 
 <p>Kohteita myynnissä, joihin peli sisältyy: {{ game.calculate_number_on_sale() }}</p>
 
+<h2 class = "subTitle">Myyntihistoria</h2>
+
+<p>Yksittäiset pelit: Myyntejä {{ game.display_count_single_sold() }} kpl, keskihinta {{ game.display_average_single_sold() }} € </p>
+<p>Pelipaketit (kohteessa vähintään 2 peliä): Myyntejä {{ game.display_count_multiple_sold() }} kpl, keskihinta {{ game.display_average_multiple_sold() }} € </p>
+
 
 {% endblock %}
