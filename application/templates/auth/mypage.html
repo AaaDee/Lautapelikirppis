@@ -9,8 +9,12 @@
  <li>Sähköposti: {{ user.email }} </li>
 </ul>
 
-<p>Myynnissä olevat pelit:</p>
+<h2 class = "subTitle">Myynnissä olevat pelisi:</h2>
 
 {{ render_myitems(sold = False, user=user) }}
 
+
+<h2 class = "subTitle">Myymäsi pelit (vain poisto sallittu)</h2>
+
+{{ render_myitems(sold = True, user=user) }}
 {% endblock %}

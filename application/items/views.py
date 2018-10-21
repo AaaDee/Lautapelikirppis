@@ -37,7 +37,7 @@ def game_already_in_item_error_message():
 def items_index():
     return render_template('items/list.html', 
                            items = Item.query.filter_by(sold = False),
-                           items_total=Item.items_total())
+                           items_total = Item.items_unsold_total())
 
 @app.route('/items/new/', methods=['GET'])
 @login_required

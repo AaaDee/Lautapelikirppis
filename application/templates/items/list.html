@@ -3,33 +3,26 @@
 
 {% block body %}
   <p>
-    Pelejä myynnissä: {{items_total}}
+    Kohteita myynnissä: {{items_total}}
   </p>
-  <table class=itemlist>
-    <tr>
-      <th>Nimi</th>
-      <th>Hinta</th>
-      <th>Myyjä</th>
-      <th>Sijainti</th>
-      <th>Sähköposti</th>
-      <th>Kohteen kuvaus</th>
-    </tr>
-    {% for item in items %}
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>{{ item.price}}</td>
-      <td>{{ item.user.username}}</td>
-      <td>{{ item.user.location}}</td>
-      <td>{{ item.user.email}}</td>
-      <td>{{ item.description}}</td>
-    </tr>
-    <tr>
-      <td>Kohteen pelit:</td>
-    </tr>
-      {% for game in item.games %}
-      <tr><td>{{ render_game_link(game) }}</td></tr>
-      {% endfor %}
-    
-    {% endfor %}
-  </table>
+  <p>
+    Jos olet kiinnostunut jostain kohteesta, ota yhteyttä myyjään sähköpostitse!
+  </p>
+
+{% for item in items %}
+
+<div class="itemListing">
+  <div class = "itemEntry">Kohteen nimi: {{ item.name }}</div>
+  <div class = "itemEntry">Hinta: {{ item.price}}</div>
+  <div class = "itemEntry">Myyjä: {{ item.user.username }}</div>
+  <div class = "itemEntry">Sijainti: {{ item.user.location }}</div>
+  <div class = "itemEntry">Sähköposti: {{ item.user.email}}</div>
+  <div class = "itemEntry">Kuvaus: {{ item.description}}</div>
+  <div class = "itemEntry gameEntry">Kohteen pelit:</div>
+  {% for game in item.games %}
+      <li>{{ render_game_link(game) }}</li>
+  {% endfor %}
+</div>
+
+{% endfor %}
 {% endblock %}

@@ -5,3 +5,25 @@
 .navtext {
     color: lightgray;
 }
+
+.itemListing {
+    border: 2px solid #333232;
+    background-color: #f0eeee;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 0;
+    width: 60%;
+  }
+
+  .gameEntry {
+      padding: 5px;
+  }
+
+  .subTitle {
+      font-size: 20px
+  }
+
+  .myPageButtons form {
+    float: center;
+  }
+ 

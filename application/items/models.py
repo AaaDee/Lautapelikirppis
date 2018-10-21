@@ -39,9 +39,9 @@ class Item(Base):
     
     
     @staticmethod
-    def items_total():
+    def items_unsold_total():
         stmt = text("""
-        SELECT * FROM Item
+        SELECT COUNT(*) FROM Item
         WHERE NOT sold
         """)
                     
@@ -76,6 +76,8 @@ class Item(Base):
             if str(game.id) == str(newGame.id):
                 return True
         return False
+    
+    
 
 
     
