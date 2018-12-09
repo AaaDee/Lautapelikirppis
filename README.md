@@ -1,6 +1,8 @@
 # Lautapelikirppis
 An online marketplace for buying and selling board games. Coursework project (in Finnish).
 
+[A demo version of the website can be found here](https://lautapelikirppis.herokuapp.com/)
+
 ## Linkkejä
 [Sovellus Herokussa](https://lautapelikirppis.herokuapp.com/)
 
